@@ -1,0 +1,3 @@
+INDEX VERSION 1.126+D:\Learning\Коллективная разработка ПО\SourceCode\.metadata\.plugins\org.eclipse.jdt.core
+3866471126.index
+1925179671.index

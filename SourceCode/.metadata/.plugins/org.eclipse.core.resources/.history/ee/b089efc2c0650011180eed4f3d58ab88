@@ -1,0 +1,23 @@
+//import java util.
+
+public class HellowWorld {
+
+	/**
+	 * @param args
+	 */
+	
+	public static void main(String[] args) {
+		class a
+		{
+			void f ()
+			{
+				System.out.println("sss");
+			}
+		}
+		a x = new a();
+		x.f();
+		System.out.println("www");
+		//System.out.println(new Date ());
+	}
+
+}
