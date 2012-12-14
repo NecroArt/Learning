@@ -1,0 +1,1257 @@
+Content-Type: multipart/related; start=<op.mhtml.1355230492010.b46db63e463dc197@192.168.0.69>; boundary=----------mLuWjIOyYNZFC7FZw0kz6H
+Content-Location: http://www.cpearson.com/excel/CFColors.htm
+Subject: =?utf-8?Q?Conditional=20Formatting=20Colors?=
+MIME-Version: 1.0
+
+------------mLuWjIOyYNZFC7FZw0kz6H
+Content-Disposition: inline; filename=CFColors.htm
+Content-Type: text/html; charset=windows-1252; name=CFColors.htm
+Content-ID: <op.mhtml.1355230492010.b46db63e463dc197@192.168.0.69>
+Content-Location: http://www.cpearson.com/excel/CFColors.htm
+Content-Transfer-Encoding: 8bit
+
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="Keywords" content="Excel, Microsoft Excel, VBA, Excel97, Excel2000, Excel Formulas, Excel Macros, Excel Functions">
+<meta name="Description" content="From Pearson Software Consulting, your complete resource for Excel solutions.">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Conditional Formatting Colors</title>
+<link rel="stylesheet" type="text/css" href="../CSS/Global.css">
+<meta name="Microsoft Border" content="none">
+</head>
+
+<body bgcolor="#FFFFFF" text="#800000" vlink="#003366" leftmargin="10" link="#FF0000">
+
+<p align="center" style="border-top-style: double; border-top-color: #800000; border-bottom-style: double; border-bottom-color: #800000; padding-top: 2; padding-bottom: 2"><font size="5" face="Arial"><i>Pearson Software Consulting Services</i></font></p>
+<p style="background-color: #800000; color: #FFFF99; padding-left: 10; padding-top: 2; padding-bottom: 2"><font size="6" face="Arial">&nbsp;&nbsp;&nbsp;
+Conditional Formatting Colors&nbsp;</font></p>
+<table border="0" width="90%" cellspacing="1">
+  <tr>
+    <td width="5%"></td>
+    <td width="93%"></td>
+    <td width="10%"></td>
+  </tr>
+  <tr>
+    <td width="5%"><font face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></td>
+    <td width="93%">
+    <font face="Arial">Unfortunately, the Color and ColorIndex properties of a 
+    Range don't return the color of a cell that is displayed if Conditional 
+    formatting is applied to the cell.&nbsp; Nor does it allow you to determine 
+    whether a conditional format is currently in effect for a cell. </font>
+    <p><font face="Arial">In order to determine these, you need code that will 
+    test the format conditions. This page describes several VBA functions that 
+    will do this for you.</font></p>
+    <p><b><font face="Courier New" color="#003366" size="4">ActiveCondition</font></b><font face="Arial">
+    <br>
+    This function will return the number of the condition that is currently 
+    applied to the cell. If the cell does not have any conditional formatting 
+    defined, or none of the conditional formats are currently applied, it 
+    returns 0. Otherwise, it returns 1, 2, or 3, indicating with format 
+    condition is in effect. </font><font face="Courier New" color="#003366">ActiveCondition</font><font face="Arial">
+    requires the </font><font face="Courier New" color="#003366">
+	GetStrippedValue </font><font face="Arial">
+    function at the bottom of this page.</font></p>
+    <blockquote>
+    <p><font face="Arial">
+    <br>
+	<b>NOTE: </b>ActiveCondition may result in an inaccurate result if the 
+	following are true:</font></p>
+    	<ul>
+			<li><font face="Arial">
+    		You are calling ActiveCondtion from a worksheet cell, AND</font></li>
+			<li><font face="Arial">
+    		The cell passed to ActiveCondtion uses a &quot;Formula Is&quot; rather than
+			<br>
+			&quot;Cell Value Is&quot; condition, AND</font></li>
+			<li><font face="Arial">
+    		The formula used in the condition formula contains relative 
+			addresses</font></li>
+		</ul>
+	</blockquote>
+    <p><font face="Arial">To prevent this problem, you must use absolute cell 
+	address in the condition formula.&nbsp; </font></p>
+    <p><b><font face="Courier New" color="#003366"><font size="4">ColorOfCF</font></font></b><font face="Arial"><font size="4">
+	</font>
+    <br>
+    This function will return the RGB color in effect for either the text or the 
+    background of the cell.&nbsp; This function requires the </font>
+    <font face="Courier New" color="#003366">ActiveCondition</font><font face="Arial"> 
+    function. You can call this function directly from a worksheet cell with a 
+	formula like: <br>
+	</font><b><font face="Courier New" color="#003366"> 
+    =ColorOfCF(A1,FALSE)</font></b></p>
+    <p><b><font face="Courier New" color="#003366" size="4">ColorIndexOfCF</font></b><font face="Arial">
+    <br>
+    This function will return the color index in effect for either the text or 
+    the background of the cell.&nbsp; This function requires the </font>
+    <font face="Courier New" color="#003366">ActiveCondition</font><font face="Arial"> 
+    function.&nbsp; You can call this function directly from a worksheet cell 
+	with a formula like: <br>
+	</font><b><font face="Courier New" color="#003366"> 
+    =ColorIndexOfCF(A1,FALSE)</font></b><font face="Arial"> 
+    <br>
+&nbsp;</font></p>
+	<p><font face="Courier New" color="#003366"><b><font size="4">CountOfCF</font></b><br>
+	</font><font face="Arial">
+    This function return the number of cells in a range that have a specified conditional 
+	format applied. Set the last argument to -1 to look at all format 
+	conditions, or a number between 1 and 3 to specify a particular condition.&nbsp; This function requires the </font>
+    <font face="Courier New" color="#003366">ActiveCondition</font><font face="Arial"> 
+    function.&nbsp; You can call this function directly from a worksheet cell 
+	with a formula like: <br>
+	</font><b><font face="Courier New" color="#003366"> 
+    =CountOfCF(A1:A10,1)</font></b><font face="Arial">
+    </font></p>
+	<p><font face="Courier New" color="#003366"><b>SumByCFColorIndex</b><br>
+	</font><font face="Arial">This function sums the cells that have a specified 
+	background color applied by conditional formatting.</font></p>
+    <p><font face="Courier New" color="#003366">
+    '''''''''''''''''''''''''''''''''''''''</font></p>
+    <p><font face="Courier New" color="#003366">Function ActiveCondition(Rng As 
+    Range) As Integer<br>
+    Dim Ndx As Long<br>
+	Dim FC As FormatCondition<br>
+	Dim Temp As Variant<br>
+	Dim Temp2 As Variant<br>
+	<br>
+	If Rng.FormatConditions.Count = 0 Then<br>
+&nbsp;&nbsp;&nbsp; ActiveCondition = 0<br>
+	Else<br>
+&nbsp;&nbsp;&nbsp; For Ndx = 1 To Rng.FormatConditions.Count<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Set FC = Rng.FormatConditions(Ndx)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Select Case FC.Type<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Case 
+	xlCellValue<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Select Case 
+	FC.Operator<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Case xlBetween<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Temp = GetStrippedValue(FC.Formula1)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Temp2 = GetStrippedValue(FC.Formula2)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	If IsNumeric(Temp) Then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	If CDbl(Rng.Value) &gt;= CDbl(FC.Formula1) And _<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	CDbl(Rng.Value) &lt;= CDbl(FC.Formula2) Then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	ActiveCondition = Ndx<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Exit Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	End If<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Else<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	If Rng.Value &gt;= Temp And _<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Rng.Value &lt;= Temp2 Then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	ActiveCondition = Ndx<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Exit Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	End If<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	End If<br>
+	<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Case xlGreater<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Temp = GetStrippedValue(FC.Formula1)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	If IsNumeric(Temp) Then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	If CDbl(Rng.Value) &gt; CDbl(FC.Formula1) Then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	ActiveCondition = Ndx<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Exit Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	End If<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Else<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	If Rng.Value &gt; Temp Then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	ActiveCondition = Ndx<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Exit Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	End If<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	End If<br>
+	<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Case xlEqual<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Temp = GetStrippedValue(FC.Formula1)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	If IsNumeric(Temp) Then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	If CDbl(Rng.Value) = CDbl(FC.Formula1) Then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	ActiveCondition = Ndx<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Exit Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	End If<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Else<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	If Temp = Rng.Value Then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	ActiveCondition = Ndx<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Exit Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	End If<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	End If<br>
+	<br>
+	<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Case xlGreaterEqual<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Temp = GetStrippedValue(FC.Formula1)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	If IsNumeric(Temp) Then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	If CDbl(Rng.Value) &gt;= CDbl(FC.Formula1) Then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	ActiveCondition = Ndx<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Exit Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	End If<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Else<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	If Rng.Value &gt;= Temp Then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	ActiveCondition = Ndx<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Exit Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	End If<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	End If<br>
+	<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Case xlLess<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Temp = GetStrippedValue(FC.Formula1)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	If IsNumeric(Temp) Then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	If CDbl(Rng.Value) &lt; CDbl(FC.Formula1) Then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	ActiveCondition = Ndx<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Exit Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	End If<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Else<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	If Rng.Value &lt; Temp Then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	ActiveCondition = Ndx<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Exit Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	End If<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	End If<br>
+	<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Case xlLessEqual<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Temp = GetStrippedValue(FC.Formula1)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	If IsNumeric(Temp) Then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	If CDbl(Rng.Value) &lt;= CDbl(FC.Formula1) Then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	ActiveCondition = Ndx<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Exit Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	End If<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Else<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	If Rng.Value &lt;= Temp Then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	ActiveCondition = Ndx<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Exit Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	End If<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	End If<br>
+	<br>
+	<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Case xlNotEqual <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Temp = GetStrippedValue(FC.Formula1)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	If IsNumeric(Temp) Then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	If CDbl(Rng.Value) &lt;&gt; CDbl(FC.Formula1) Then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	ActiveCondition = Ndx<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Exit Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	End If<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Else<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	If Temp &lt;&gt; Rng.Value Then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	ActiveCondition = Ndx<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Exit Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	End If<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	End If<br>
+	<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Case xlNotBetween<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Temp = GetStrippedValue(FC.Formula1)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Temp2 = GetStrippedValue(FC.Formula2)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	If IsNumeric(Temp) Then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	If Not (CDbl(Rng.Value) &lt;= CDbl(FC.Formula1)) And _<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	(CDbl(Rng.Value) &gt;= CDbl(FC.Formula2)) Then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	ActiveCondition = Ndx<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Exit Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	End If<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Else<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	If Not Rng.Value &lt;= Temp And _<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Rng.Value &gt;= Temp2 Then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	ActiveCondition = Ndx<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Exit Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	End If<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	End If<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Case Else<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Debug.Print &quot;UNKNOWN OPERATOR&quot;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; End Select<br>
+	<br>
+	<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Case xlExpression<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; If 
+	Application.Evaluate(FC.Formula1) Then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	ActiveCondition = Ndx<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Exit Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; End If<br>
+	<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Case Else<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Debug.Print 
+	&quot;UNKNOWN TYPE&quot;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; End Select<br>
+	<br>
+&nbsp;&nbsp;&nbsp; Next Ndx<br>
+	<br>
+	End If<br>
+	<br>
+	ActiveCondition = 0<br>
+    <br>
+    <br>
+    <br>
+    End Function<br>
+&nbsp;</font></p>
+    <p><font face="Courier New" color="#003366">
+    '''''''''''''''''''''''''''''''''''''''</font></p>
+    <p><font face="Courier New" color="#003366"><br>
+    Function ColorIndexOfCF(Rng As Range, _ <br>
+&nbsp;&nbsp;&nbsp; Optional OfText As Boolean = False) As Integer<br>
+    <br>
+    Dim AC As Integer<br>
+    AC = ActiveCondition(Rng)<br>
+    If AC = 0 Then<br>
+&nbsp;&nbsp;&nbsp; If OfText = True Then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ColorIndexOfCF = Rng.Font.ColorIndex<br>
+&nbsp;&nbsp;&nbsp; Else<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ColorIndexOfCF = Rng.Interior.ColorIndex<br>
+&nbsp;&nbsp;&nbsp; End If<br>
+    Else<br>
+&nbsp;&nbsp;&nbsp; If OfText = True Then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ColorIndexOfCF = 
+    Rng.FormatConditions(AC).Font.ColorIndex<br>
+&nbsp;&nbsp;&nbsp; Else<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ColorIndexOfCF = 
+    Rng.FormatConditions(AC).Interior.ColorIndex<br>
+&nbsp;&nbsp;&nbsp; End If<br>
+    End If<br>
+    <br>
+    End Function<br>
+&nbsp;</font></p>
+    <p><font face="Courier New" color="#003366">
+    '''''''''''''''''''''''''''''''''''''''</font></p>
+    <p><font face="Courier New" color="#003366"><br>
+    Function ColorOfCF(Rng As Range, Optional OfText As Boolean = False) As Long<br>
+    <br>
+    Dim AC As Integer<br>
+    AC = ActiveCondition(Rng)<br>
+    If AC = 0 Then<br>
+&nbsp;&nbsp;&nbsp; If OfText = True Then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ColorOfCF = Rng.Font.Color<br>
+&nbsp;&nbsp;&nbsp; Else<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ColorOfCF = Rng.Interior.Color<br>
+&nbsp;&nbsp;&nbsp; End If<br>
+    Else<br>
+&nbsp;&nbsp;&nbsp; If OfText = True Then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ColorOfCF = 
+    Rng.FormatConditions(AC).Font.Color<br>
+&nbsp;&nbsp;&nbsp; Else<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ColorOfCF = 
+    Rng.FormatConditions(AC).Interior.Color<br>
+&nbsp;&nbsp;&nbsp; End If<br>
+    End If<br>
+    <br>
+    End Function<br>
+    </font><font face="Arial"><br>
+    </font><font face="Courier New" color="#003366">
+    '''''''''''''''''''''''''''''''''''''''</font></p>
+	<p><font face="Courier New" color="#003366">Function GetStrippedValue(CF As 
+	String) As String<br>
+&nbsp;&nbsp;&nbsp; Dim Temp As String<br>
+&nbsp;&nbsp;&nbsp; If InStr(1, CF, &quot;=&quot;, vbTextCompare) Then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Temp = Mid(CF, 3, Len(CF) - 3)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; If Left(Temp, 1) = &quot;=&quot; Then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Temp = Mid(Temp, 2)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; End If<br>
+&nbsp;&nbsp;&nbsp; Else<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Temp = CF<br>
+&nbsp;&nbsp;&nbsp; End If<br>
+&nbsp;&nbsp;&nbsp; GetStrippedValue = Temp<br>
+	End Function<br>
+&nbsp;</font></p>
+    <p><font face="Courier New" color="#003366">
+    '''''''''''''''''''''''''''''''''''''''</font></p>
+	<p><font face="Courier New" color="#003366">Function CountOfCF(InRange As 
+	Range, _ <br>
+&nbsp;&nbsp;&nbsp; Optional Condition As Integer = -1) As Long<br>
+&nbsp;&nbsp;&nbsp; Dim Count As Long<br>
+&nbsp;&nbsp;&nbsp; Dim Rng As Range<br>
+&nbsp;&nbsp;&nbsp; Dim FCNum As Integer<br>
+	<br>
+&nbsp;&nbsp;&nbsp; For Each Rng In InRange.Cells<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FCNum = ActiveCondition(Rng)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; If FCNum &gt; 0 Then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; If Condition 
+	= -1 Or Condition = FCNum Then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Count = Count + 1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; End If<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; End If<br>
+&nbsp;&nbsp;&nbsp; Next Rng<br>
+&nbsp;&nbsp;&nbsp; CountOfCF = Count<br>
+	End Function<br>
+	<br>
+	'''''''''''''''''''''''''''''''''''''''</font></p>
+	<p><font face="Courier New" color="#003366">Function SumByCFColorIndex(Rng 
+	As Range, CI As Integer) As Double<br>
+&nbsp;&nbsp;&nbsp; Dim R As Range<br>
+&nbsp;&nbsp;&nbsp; Dim Total As Double<br>
+&nbsp;&nbsp;&nbsp; For Each R In Rng.Cells<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; If ColorIndexOfCF(R, False) = CI Then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Total = Total 
+	+ R.Value<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; End If<br>
+&nbsp;&nbsp;&nbsp; Next R<br>
+&nbsp;&nbsp;&nbsp; SumByCFColorIndex = Total<br>
+	End Function<br>
+&nbsp;</font></p>
+    <p>&nbsp;</p>
+    <p><font face="Arial">For more information, see the <a href="colors.htm">
+    Functions For Working With Cell Colors</a> and the <a href="cformatting.htm">
+    Conditional Formatting</a> pages.</font></p>
+    <p>&nbsp;</td>
+    <td width="10%">
+      <blockquote>
+        <p>&nbsp;</p>
+      </blockquote>
+    </td>
+  </tr>
+  <tr>
+    <td width="5%"></td>
+    <td width="93%">
+    </td>
+    <td width="1%">
+      <blockquote>
+        <p>&nbsp;</p>
+      </blockquote>
+    </td>
+  </tr>
+</table>
+<p align="center">&nbsp;
+<p align="center" style="border-style: double; border-color: #800000">
+<font face="Arial" size="1" color="#800000"><b>&nbsp;Created By Chip Pearson and 
+Pearson Software Consulting, LLC&nbsp;</b><br>
+This Page:&nbsp;&nbsp;
+<script language="JScript">
+<!--
+document.write (document.URL);
+// -->
+    </script>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+Updated: <!--webbot bot="Timestamp" s-type="EDITED" s-format="%B %d, %Y" startspan -->October 11, 2012<!--webbot bot="Timestamp" i-checksum="30272" endspan -->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<a href="../excel.htm">MAIN PAGE</a>&nbsp;&nbsp;&nbsp;
+<a href="../excel/about.htm">About This Site</a>&nbsp;&nbsp;&nbsp;
+<a href="../excel/consult.htm">Consulting</a>&nbsp;&nbsp;&nbsp;
+<a href="../excel/download.htm">Downloads</a>&nbsp;&nbsp; <br>
+<a href="../excel/ExcelPages.htm">Page Index</a>&nbsp;&nbsp; &nbsp;
+<a href="../excel/search.htm">Search</a>&nbsp;&nbsp;&nbsp;
+<a href="../excel/topic.htm">Topic Index</a>&nbsp;&nbsp;&nbsp;
+<a href="../excel/whatsnew.htm">What's New<span style="text-decoration: none">&nbsp;&nbsp;&nbsp;
+</span></a></font><font face="Arial" size="1"><a href="../excel/links.htm">Links</a>&nbsp;&nbsp;
+<a href="../excel/LegaleseAndDisclaimers.htm">Legalese And Disclaimers</a></font><br>
+<font face="Arial" size="2" color="#800000">
+<a href="mailto:chip@cpearson.com?subject=Site Feedback">chip@cpearson.com</a></font><br>
+<font face="Arial" size="1" color="#800000">
+<br>
+© Copyright 1997-2007&nbsp; Charles H. Pearson&nbsp; <br>
+&nbsp;</font>
+
+<!-- GOOGLE 1 -->
+<script type="text/javascript"><!--
+google_ad_client = "pub-7293698002238456";
+google_ad_width = 728;
+google_ad_height = 90;
+google_ad_format = "728x90_as";
+google_ad_type = "text_image";
+google_ad_channel ="";
+//--></script><script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<!-- END GOOGLE 1 -->
+<!-- GOOGLE 2 -->
+<script type="text/javascript"><!--
+google_ad_client = "pub-7293698002238456";
+google_ad_width = 728;
+google_ad_height = 90;
+google_ad_format = "728x90_as";
+google_ad_type = "text_image";
+google_ad_channel ="";
+//--></script><script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</p>
+<!-- END GOOGLE2 -->
+
+</body>
+
+</html>
+------------mLuWjIOyYNZFC7FZw0kz6H
+Content-Disposition: inline; filename=Global.css
+Content-Type: text/css; name=Global.css
+Content-Location: http://www.cpearson.com/CSS/Global.css
+Content-Transfer-Encoding: 8bit
+
+/*
+
+File: Global.css
+By:   Chip Pearson
+Date: 15-June-2007
+This is the primary stylesheet for all pages and applications. 
+
+*/
+
+#TopButtons 
+{
+   text-align:center;
+   width:700px;
+   height:auto;
+}
+
+/*****************************************************************************
+ #left_col, #right_col, #page_content and #page_content_center are used to 
+ create a 3 column layout, rather than use a <table> for page formatting. 
+ This is the "preferred" way of creating a multicolumn page.
+ *****************************************************************************/
+
+#left_col {
+/*	width:10%;			5-April-2008*/
+	width:200px;    /* was 75px; */
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	height: 59px;   /* added new for ads */
+}
+
+#right_col {
+/*	width:10%;			5-April-2008 */
+	width:180px;
+	position: absolute; /* 29Jan2011 was absolute */
+	top: 0px;
+	right: 0px;
+    height: 59px;
+}
+
+#page_content {
+/*	margin-right:10%;
+	margin-left: 10%;
+*/
+/*
+	19-July-2008 ADDED:
+*/
+	width:590px; /* was 600px */
+	
+	margin-right:170px;
+	margin-left:180px; /* was 100px */
+    
+}
+
+#page_content_center {
+/*	margin-right:10%;
+	margin-left:10%; */
+	margin-right:100px;
+	margin-left:100px;
+	text-align:center;
+}
+	
+#container {
+	position: relative;
+/*	width: 100%; */
+	width: 800px;
+}
+
+/* new 20-dec */
+p {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #800000;
+}
+
+p.leftindent
+{
+	width:10%;
+}
+p.center
+{
+	width:80%;
+}
+p.right
+{
+	width:10%;
+}
+
+body 
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #800000;
+}
+
+.main {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #800000;
+}
+
+
+
+
+
+
+
+.left_ligit 
+{
+width:180px;    
+}
+
+.right_ligit
+{
+width:180px;    
+}
+
+.mainmedium
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:medium;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #800000;
+}
+
+.redmain
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:medium;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	color:red;
+}
+.imagelink
+{
+	border-style:none;
+}
+.imagemargins
+{
+	border-style:none;
+	margin-bottom:25px;
+	margin-top: 25px;
+	margin-left:25px;
+	margin-right:25px;
+}
+
+.code {
+	font-family: "Courier New", Courier, monospace;
+	font-size: small;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #000080;
+}
+
+.comments {
+	font-family: "Courier New", Courier, monospace;
+	font-size: small;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #008000;
+}
+
+.xml {
+	font-family: "Courier New", Courier, monospace;
+	font-size: small;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #0000FF;
+}
+
+.pagebannerLess
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:x-large;
+	background-color:maroon;
+	color:yellow;
+	border:medium;
+	border-color:maroon;
+	border-style:double;
+	border-width:100%;
+	text-align:center;
+}
+
+
+.pagetopic {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: x-large;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #800000;
+/*
+	border-top-style:double;
+	border-top-color:maroon;
+	border-top-width:medium;
+	
+	border-bottom-style:double;
+	border-bottom-color:maroon;
+	border-bottom-width:medium;
+	
+*/
+}
+
+.sectionheader {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: large;
+	font-weight: normal;
+	font-style: italic;
+	font-variant: normal;
+	text-transform: none;
+	color: #800000;
+}
+
+.FullBox {
+	font-family:Arial, Helvetica, sans-serif;
+	padding:5px;
+	margin:10px;
+	border: medium double #800000;
+	font-size: small;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #800000;
+}
+
+.CenterFullBox {
+	font-family:Arial, Helvetica, sans-serif;
+	padding:5px;
+	margin:10px;
+	border: medium double #800000;
+	font-size: small;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #800000;
+	text-align:center;
+}
+
+
+.SizeBox {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #800000;
+	border: medium double #800000;
+	padding:5px;
+	margin:10px;
+}
+.XMLData {
+	font-family: "Courier New", Courier, monospace;
+	font-size: small;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	color:navy;
+	
+}
+
+.namespace {
+	font-family: "Courier New", Courier, monospace;
+	font-size: small;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #808000;
+}
+
+
+
+a:active {
+	color: #FF0000;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+}
+
+
+
+.LinkMedium {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:medium ;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #FF0000;
+}
+
+
+a:link {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	color:#660066;
+}
+a:visited {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	color:#990033
+	
+}
+.filename {
+	font-family: "Courier New", Courier, monospace;
+	font-size: small;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #000080;
+}
+a:hover {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #0000FF;
+	
+}
+.xSmall {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: x-small;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #800000;
+}
+.TopicLetter {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: x-large;
+	font-weight: normal;
+	font-style: italic;
+	font-variant: normal;
+	text-transform: none;
+	color: #800000;
+}
+.keys {
+	font-family: "Courier New", Courier, monospace;
+	font-size: small;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #FF0000;
+}
+.smallcapsword {
+	font-family: Arial, Helvetica, sans-serif;
+/*	font-size: small;  */
+	font-weight: normal;
+	font-style: normal;
+	font-variant: small-caps;
+/*	text-transform: uppercase; */
+	/* color: #800000; */
+}
+.definedword {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+	font-weight: normal;
+	font-style: italic;
+	font-variant: normal;
+	text-transform: none;
+	color: #800000;
+}
+
+a.definition {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+	font-weight: normal;
+	font-style: italic;
+	font-variant: normal;
+	text-transform: none;
+	color: #800000;
+}
+a.nochange
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #FF0000;	
+}
+	
+	
+
+
+.MainTableLeft {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #800000;
+/*	width:5%; 					5-Apirl-2008 */
+	width:75px;
+	text-align:left;
+	vertical-align:top;
+}
+	
+.MainTableCenter {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #800000;
+/*	width:80%;			5-April-2008 */
+	width:650px;
+	text-align:left;
+	vertical-align:top;
+}
+
+.MainTableRight {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #800000;
+/*	width:10%;  			5-April-2008 */
+	width:100px;
+	text-align:left;
+	vertical-align:top;
+}
+
+
+	
+
+
+.pagebanner2 {
+	font-family: Nina;
+	font-size: xx-large;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	background-color:maroon;
+	color: #FFFF99;
+	border:medium;
+	border-color:maroon;
+	border-style:double;
+	border-width:100%;
+	text-align:center;
+}
+
+.pagebanner
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:xx-large;
+	background-color:maroon;
+	color:#FFFF99;
+	border:medium;
+	border-color:maroon;
+	border-style:double;
+	border-width:100%;
+	text-align:center;
+}
+
+p.Center
+{
+	text-align:center;
+}	
+
+.sql {
+	font-family: "Courier New", Courier, monospace;
+	font-size: small;
+	font-weight: normal;
+	font-style: italic;
+	font-variant: normal;
+	color: #003399;
+}
+
+
+p.warning {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #000066;
+	background-color:#FF9999;
+	margin-left:10%;
+	margin-right:10%;
+}
+
+p.definiton {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #000066;
+	background-color:#ADDCEB;
+	margin-left:10%;
+	margin-right:10%;
+}
+
+p.information {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #000066;
+	background-color:#ADDCEB;
+	margin-left:10%;
+	margin-right:10%;
+}
+
+
+
+
+div.precode {
+	font-family: "Courier New", Courier, monospace;
+	font-size: medium;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #000080;
+}
+
+.importantcode {
+	font-family: "Courier New", Courier, monospace;
+	font-size: small;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #000080;
+	background-color: #FFFF00;
+}
+.formula {
+	font-family: "Courier New", Courier, monospace;
+	font-size: small;
+	font-weight: bold;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	color:#660066; 
+}
+.keystrokes {
+	font-family: "Courier New", Courier, monospace;
+	font-size: medium;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: small-caps;
+	text-transform: uppercase;
+	color: #FF0000;
+}
+
+.keystroke {
+	font-family: "Courier New", Courier, monospace;
+	font-size: medium;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: small-caps;
+	text-transform: uppercase;
+	color: #FF0000;
+}
+
+
+
+.warning 
+{
+	font-family:Arial;
+	font-size:small;
+	font-style:normal;
+	font-weight:bold;
+	color:Red;
+}
+p.footerbanner
+{
+	border-color:rgb(149,55,53);
+	border-style:double;
+	border-width:medium;
+	text-align:center;
+	color:rgb(149,55,53);
+}
+
+.downloadtitle 
+{
+	font-family:Arial;
+	font-size:medium;
+	font-style:normal;
+	font-weight:normal;
+	color:Purple;
+}
+
+.classname
+{
+ font-family:Courier New;
+ font-size:small;
+ text-align:left;
+color: #000080;
+} 
+ 
+p.sidebar
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #000080;
+	background-color: #ffff00;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+/*
+Image float styles added CHP 13-Nov-2008
+*/
+img.FloatTextOnLeft
+{
+    float:right;
+    margin-right:10px;
+    margin-left:10px;    
+}
+img.FloatTextOnRight
+{
+    float:left;
+    margin-left:10px;
+    margin-right:10px;
+}    
+------------mLuWjIOyYNZFC7FZw0kz6H--
